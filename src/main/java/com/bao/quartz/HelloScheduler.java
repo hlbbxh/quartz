@@ -22,6 +22,12 @@ public class HelloScheduler {
 		//创建一个jobdetail实例 讲该实例 与  hellojob  class绑定
 		JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
 				.withIdentity("myjob","group1").build();
+		
+		//要点一 
+		System.out.println("jobDetail name"+ jobDetail.getKey().getName());
+		System.out.println("jobDetail group"+ jobDetail.getKey().getGroup());
+		System.out.println("jobDetail jobclass"+ jobDetail.getJobClass().getName());		
+		
 		//创建一个trigger实例  触发器 定义该job立即执行 并且每两秒钟执行一次
 		Trigger trigger = TriggerBuilder.newTrigger()  //工厂模式创建的 new一个
 				.withIdentity("mytrigger","group1") //定义标识符  和组
